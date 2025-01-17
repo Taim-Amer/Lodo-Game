@@ -1,5 +1,7 @@
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        State state = new State();
+//        state.Players.get(0).addPiece();
+//        Logic.playWithComputer(state);
     }
 }
