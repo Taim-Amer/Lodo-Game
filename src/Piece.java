@@ -25,7 +25,6 @@ public class Piece {
     public void setIndex(int target) {
         this.square.setIndex(target);
     }
-
     public Piece Copy(){
         Piece piece = new Piece();
         if (this.onBoard && !this.isWin)
