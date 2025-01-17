@@ -21,10 +21,19 @@ public class Dice {
         return steps;
     }
     public Dice rollDice() {
-        Dice roll = new
+        Dice roll = null;
         Random random = new Random();
-        steps = random.nextInt(6) + 1;
-        return
+        int chance = random.nextInt(6) + 1;
+        roll = switch (chance) {
+            case 1 -> Item.ONE;
+            case 2 -> Item.TOW;
+            case 3 -> Item.THREE;
+            case 4 -> Item.FOUR;
+            case 5 -> Item.FIVE;
+            case 6 -> Item.SIX;
+            default -> roll;
+        };
+        return roll;
     }
     @Override
     public boolean equals(Object obj) {
