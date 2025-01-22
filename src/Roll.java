@@ -1,45 +1,42 @@
 import java.util.Objects;
 import java.util.Random;
 
-public class Dice {
-    int steps;
-    boolean again;
+public class Roll {
+    private int steps;
+    private boolean again;
 
-    public Dice(int steps  , boolean again){
+    public Roll(int steps, boolean again) {
         this.steps = steps;
         this.again = again;
     }
-    public Dice (){
-        Dice roll = rollDice();
+
+    public Roll() {
+        Roll roll = rollDice();
         this.steps = roll.steps;
         this.again = roll.again;
     }
+
+    // Getters
     public boolean isAgain() {
         return again;
     }
+
     public int getSteps() {
         return steps;
     }
-    public Dice rollDice() {
-        Dice roll = null;
+
+    public Roll rollDice() {
         Random random = new Random();
-        int chance = random.nextInt(6) + 1;
-        roll = switch (chance) {
-            case 1 -> Item.ONE;
-            case 2 -> Item.TOW;
-            case 3 -> Item.THREE;
-            case 4 -> Item.FOUR;
-            case 5 -> Item.FIVE;
-            case 6 -> Item.SIX;
-            default -> roll;
-        };
-        return roll;
+        int result = random.nextInt(6) + 1;
+        return new Roll(result, result == 6);
     }
+
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
-        Dice roll = (Dice) obj;
+        Roll roll = (Roll) obj;
         return steps == roll.steps && again == roll.again;
     }
 

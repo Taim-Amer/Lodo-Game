@@ -1,8 +1,10 @@
 public class Square {
-    private int index;
+    private int index ;
+    public boolean special;
     public String playerHere = "| ";
     private boolean isSafe;
-    int pieceNumber = 0;
+    int pieceNum = 0;
+
     public Square(int index){
         this.index = index;
     }
@@ -21,24 +23,36 @@ public class Square {
     public boolean isSafe() {
         return isSafe;
     }
-    public void clearOne(){
-        this.pieceNumber--;
-        if(this.pieceNumber == 0){
-            this.playerHere = "| ";
-        }
-    }
-    public void  addOne(String who){
-        this.pieceNumber++;
-        this.playerHere = who;
-    }
     public Square Copy(){
         Square copy=new Square(this.index);
         copy.playerHere = this.playerHere;
-//        copy.special = this.special;
+        copy.special = this.special;
         copy.isSafe = this.isSafe;
-        copy.pieceNumber = this.pieceNumber;
+        copy.pieceNum = this.pieceNum;
         return copy;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null || getClass() != obj.getClass())
+            return false;
+        Square square = (Square) obj;
+        return index == square.index && pieceNum == square.pieceNum;
+    }
+
+    public void clearOne(){
+        this.pieceNum--;
+        if(this.pieceNum == 0)
+            this.playerHere = "| ";
+    }
+    //@ , #
+    public void addOne(String who){
+        this.pieceNum++;
+        this.playerHere = who;
+    }
+
     @Override
     public String toString() {
         return playerHere + index;
